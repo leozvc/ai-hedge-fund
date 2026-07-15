@@ -6,6 +6,7 @@ import { flowService } from '@/services/flow-service';
 import { Flow } from '@/types/flow';
 import { MarkerType, ReactFlowInstance, useReactFlow, XYPosition } from '@xyflow/react';
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { useI18n } from '@/i18n';
 
 interface FlowContextType {
   addComponentToFlow: (componentName: string) => Promise<void>;
@@ -21,6 +22,7 @@ interface FlowContextType {
 const FlowContext = createContext<FlowContextType | null>(null);
 
 export function useFlowContext() {
+  const { t } = useI18n();
   const context = useContext(FlowContext);
   if (!context) {
     throw new Error('useFlowContext must be used within a FlowProvider');

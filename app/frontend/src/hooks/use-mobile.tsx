@@ -1,8 +1,10 @@
 import * as React from "react"
+import { useI18n } from '@/i18n';
 
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
+  const { t } = useI18n();
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
 
   React.useEffect(() => {

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Copy, Edit, Trash2 } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { useI18n } from '@/i18n';
 
 interface FlowContextMenuProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export function FlowContextMenu({
   onDuplicate, 
   onDelete 
 }: FlowContextMenuProps) {
+  const { t } = useI18n();
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

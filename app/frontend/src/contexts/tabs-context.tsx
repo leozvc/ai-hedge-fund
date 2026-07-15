@@ -5,6 +5,7 @@ import { createContext, ReactNode, useCallback, useContext, useEffect, useState 
 export type TabType = 'flow' | 'settings';
 
 export interface Tab {
+import { useI18n } from '@/i18n';
   id: string;
   type: TabType;
   title: string;
@@ -41,6 +42,7 @@ interface TabsContextType {
 const TabsContext = createContext<TabsContextType | null>(null);
 
 export function useTabsContext() {
+  const { t } = useI18n();
   const context = useContext(TabsContext);
   if (!context) {
     throw new Error('useTabsContext must be used within a TabsProvider');

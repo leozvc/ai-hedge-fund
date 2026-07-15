@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ReactNode, useEffect, useState } from 'react';
 import { ComponentActions } from './component-actions';
 import { ComponentList } from './component-list';
+import { useI18n } from '@/i18n';
 
 interface RightSidebarProps {
   children?: ReactNode;
@@ -18,6 +19,7 @@ export function RightSidebar({
   isCollapsed,
   onWidthChange,
 }: RightSidebarProps) {
+  const { t } = useI18n();
   // Use our custom hooks
   const { width, isDragging, elementRef, startResize } = useResizable({
     defaultWidth: 280,

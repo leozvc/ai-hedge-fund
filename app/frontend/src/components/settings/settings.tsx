@@ -4,6 +4,7 @@ import { Key, Palette } from 'lucide-react';
 import { useState } from 'react';
 import { ApiKeysSettings, Models } from './';
 import { ThemeSettings } from './appearance';
+import { useI18n } from '@/i18n';
 
 interface SettingsProps {
   className?: string;
@@ -17,6 +18,7 @@ interface SettingsNavItem {
 }
 
 export function Settings({ className }: SettingsProps) {
+  const { t } = useI18n();
   const [selectedSection, setSelectedSection] = useState('api');
 
   const navigationItems: SettingsNavItem[] = [
@@ -59,7 +61,7 @@ export function Settings({ className }: SettingsProps) {
         {/* Left Navigation Pane */}
         <div className="w-60 bg-panel flex-shrink-0">
           <div className="p-4 border-b">
-            <h1 className="text-lg font-semibold text-primary">Settings</h1>
+            <h1 className="text-lg font-semibold text-primary">{t('Settings')}</h1>
           </div>
           <nav className="p-2">
             {navigationItems.map((item) => {

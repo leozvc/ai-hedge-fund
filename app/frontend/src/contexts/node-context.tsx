@@ -25,6 +25,7 @@ export interface AgentNodeData {
 
 // Data structure for the output node data (from complete event)
 export interface OutputNodeData {
+import { useI18n } from '@/i18n';
   decisions: Record<string, any>;
   analyst_signals: Record<string, any>;
   // Backtest-specific fields
@@ -88,6 +89,7 @@ interface NodeContextType {
 const NodeContext = createContext<NodeContextType | undefined>(undefined);
 
 export function NodeProvider({ children }: { children: ReactNode }) {
+  const { t } = useI18n();
   // Use composite keys for flow-aware agent node data storage
   const [agentNodeData, setAgentNodeData] = useState<Record<string, AgentNodeData>>({});
   // Flow-aware output node data storage

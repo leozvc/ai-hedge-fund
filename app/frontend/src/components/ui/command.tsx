@@ -5,6 +5,7 @@ import * as React from "react"
 
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+import { useI18n } from '@/i18n';
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -22,6 +23,7 @@ const Command = React.forwardRef<
 Command.displayName = CommandPrimitive.displayName
 
 const CommandDialog = ({ children, ...props }: DialogProps) => {
+  const { t } = useI18n();
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0">

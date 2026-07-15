@@ -15,6 +15,7 @@ import { type PortfolioManagerNode } from '../types';
 import { getStatusColor } from '../utils';
 import { InvestmentReportDialog } from './investment-report-dialog';
 import { NodeShell } from './node-shell';
+import { useI18n } from '@/i18n';
 
 export function PortfolioManagerNode({
   data,
@@ -22,6 +23,7 @@ export function PortfolioManagerNode({
   id,
   isConnectable,
 }: NodeProps<PortfolioManagerNode>) {
+  const { t } = useI18n();
   const { currentFlowId } = useFlowContext();
   const { getAgentNodeDataForFlow, setAgentModel, getAgentModel, getOutputNodeDataForFlow } = useNodeContext();
 
@@ -141,7 +143,7 @@ export function PortfolioManagerNode({
                   models={availableModels}
                   value={selectedModel?.model_name || ''}
                   onChange={handleModelChange}
-                  placeholder="Auto"
+                  placeholder={t('Auto')}
                 />
               </div>
             </div>

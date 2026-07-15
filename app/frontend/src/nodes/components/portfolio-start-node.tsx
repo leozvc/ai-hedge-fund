@@ -27,6 +27,7 @@ import { useNodeState } from '@/hooks/use-node-state';
 import { cn, formatKeyboardShortcut } from '@/lib/utils';
 import { type PortfolioStartNode } from '../types';
 import { NodeShell } from './node-shell';
+import { useI18n } from '@/i18n';
 
 interface PortfolioPosition {
   ticker: string;
@@ -45,6 +46,7 @@ export function PortfolioStartNode({
   id,
   isConnectable,
 }: NodeProps<PortfolioStartNode>) {
+  const { t } = useI18n();
   // Calculate default dates
   const today = new Date();
   const threeMonthsAgo = new Date(today);
@@ -296,7 +298,7 @@ export function PortfolioStartNode({
                 <div className="text-subtitle text-primary flex items-center gap-1">
                   <Tooltip delayDuration={200}>
                     <TooltipTrigger asChild>
-                      <span>Positions</span>
+                      <span>{t('Positions')}</span>
                     </TooltipTrigger>
                     <TooltipContent side="right">
                       Add your portfolio positions with ticker, quantity, and trade price
@@ -308,14 +310,14 @@ export function PortfolioStartNode({
                     return (
                     <div key={index} className="flex gap-2 items-center">
                       <Input
-                        placeholder="Ticker"
+                        placeholder={t('Ticker')}
                         value={position.ticker}
                         onChange={(e) => handlePositionChange(index, 'ticker', e.target.value)}
                         className="flex-1"
                       />
                       <Input
                         type="number"
-                        placeholder="Quantity"
+                        placeholder={t('Quantity')}
                         value={position.quantity}
                         onChange={(e) => handlePositionChange(index, 'quantity', e.target.value)}
                         className="w-20"
@@ -327,7 +329,7 @@ export function PortfolioStartNode({
                         </div>
                         <Input
                           type="number"
-                          placeholder="Price"
+                          placeholder={t('Price')}
                           value={position.tradePrice}
                           onChange={(e) => handlePositionChange(index, 'tradePrice', e.target.value)}
                           className="pl-8"
@@ -381,7 +383,7 @@ export function PortfolioStartNode({
                     <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0 bg-node border border-border shadow-lg">
                       <Command className="bg-node">
                         <CommandList className="bg-node">
-                          <CommandEmpty>No run mode found.</CommandEmpty>
+                          <CommandEmpty>{t('No run mode found.')}</CommandEmpty>
                           <CommandGroup>
                             {runModes.map((mode) => (
                               <CommandItem

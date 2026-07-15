@@ -31,6 +31,7 @@ import { createAgentDisplayNames } from '@/utils/text-utils';
 import { ArrowDown, ArrowUp, Minus } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useI18n } from '@/i18n';
 
 interface InvestmentReportDialogProps {
   isOpen: boolean;
@@ -47,6 +48,7 @@ export function InvestmentReportDialog({
   outputNodeData,
   connectedAgentIds,
 }: InvestmentReportDialogProps) {
+  const { t } = useI18n();
   // Check if this is a backtest result and return early if it is
   // Backtest results should be displayed in the backtest output tab, not in the investment report dialog
   if (outputNodeData?.decisions?.backtest?.type === 'backtest_complete') {
@@ -111,13 +113,13 @@ export function InvestmentReportDialog({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">Investment Report</DialogTitle>
+          <DialogTitle className="text-xl font-bold">{t('Investment Report')}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-8 my-4">
           {/* Summary Section */}
           <section>
-            <h2 className="text-lg font-semibold mb-4">Summary</h2>
+            <h2 className="text-lg font-semibold mb-4">{t('Summary')}</h2>
             <Card>
               <CardHeader className="pb-2">
                 <CardDescription>
@@ -128,11 +130,11 @@ export function InvestmentReportDialog({
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Ticker</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Action</TableHead>
-                      <TableHead>Quantity</TableHead>
-                      <TableHead>Confidence</TableHead>
+                      <TableHead>{t('Ticker')}</TableHead>
+                      <TableHead>{t('Price')}</TableHead>
+                      <TableHead>{t('Action')}</TableHead>
+                      <TableHead>{t('Quantity')}</TableHead>
+                      <TableHead>{t('Confidence')}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -161,7 +163,7 @@ export function InvestmentReportDialog({
           </section>
           {/* Analyst Signals Section */}
           <section>
-            <h2 className="text-lg font-semibold mb-4">Analyst Signals</h2>
+            <h2 className="text-lg font-semibold mb-4">{t('Analyst Signals')}</h2>
             <Accordion type="multiple" className="w-full">
               {tickers.map(ticker => (
                 <AccordionItem key={ticker} value={ticker}>

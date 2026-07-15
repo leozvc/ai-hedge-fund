@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { useFlowContext } from '@/contexts/flow-context';
 import { cn } from '@/lib/utils';
 import { Plus, Save } from 'lucide-react';
+import { useI18n } from '@/i18n';
 
 interface FlowActionsProps {
   onSave: () => Promise<void>;
@@ -9,6 +10,7 @@ interface FlowActionsProps {
 }
 
 export function FlowActions({ onSave, onCreate }: FlowActionsProps) {
+  const { t } = useI18n();
   const { currentFlowName, isUnsaved } = useFlowContext();
 
   return (
@@ -35,7 +37,7 @@ export function FlowActions({ onSave, onCreate }: FlowActionsProps) {
           size="icon"
           onClick={onCreate}
           className="h-6 w-6 text-primary hover-bg"
-          title="Create new flow"
+          title={t('Create new flow')}
         >
           <Plus size={14} />
         </Button>

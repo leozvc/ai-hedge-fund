@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import { getActionColor, getDisplayName, getSignalColor, getStatusIcon } from './output-tab-utils';
 import { ReasoningContent } from './reasoning-content';
+import { useI18n } from '@/i18n';
 
 // Progress Section Component
 function ProgressSection({ sortedAgents }: { sortedAgents: [string, any][] }) {
@@ -13,7 +14,7 @@ function ProgressSection({ sortedAgents }: { sortedAgents: [string, any][] }) {
   return (
     <Card className="bg-transparent mb-4">
       <CardHeader>
-        <CardTitle className="text-lg">Progress</CardTitle>
+        <CardTitle className="text-lg">{t('Progress')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-1">
@@ -52,16 +53,16 @@ function SummarySection({ outputData }: { outputData: any }) {
   return (
     <Card className="bg-transparent mb-4">
       <CardHeader>
-        <CardTitle className="text-lg">Summary</CardTitle>
+        <CardTitle className="text-lg">{t('Summary')}</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Ticker</TableHead>
-              <TableHead>Action</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Confidence</TableHead>
+              <TableHead>{t('Ticker')}</TableHead>
+              <TableHead>{t('Action')}</TableHead>
+              <TableHead>{t('Quantity')}</TableHead>
+              <TableHead>{t('Confidence')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -106,7 +107,7 @@ function AnalysisResultsSection({ outputData }: { outputData: any }) {
   return (
     <Card className="bg-transparent">
       <CardHeader>
-        <CardTitle className="text-lg">Analysis</CardTitle>
+        <CardTitle className="text-lg">{t('Analysis')}</CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs value={selectedTicker} onValueChange={setSelectedTicker} className="w-full">
@@ -131,10 +132,10 @@ function AnalysisResultsSection({ outputData }: { outputData: any }) {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Agent</TableHead>
-                      <TableHead>Signal</TableHead>
-                      <TableHead>Confidence</TableHead>
-                      <TableHead>Reasoning</TableHead>
+                      <TableHead>{t('Agent')}</TableHead>
+                      <TableHead>{t('Signal')}</TableHead>
+                      <TableHead>{t('Confidence')}</TableHead>
+                      <TableHead>{t('Reasoning')}</TableHead>
                     </TableRow>
                   </TableHeader>
                                      <TableBody>
@@ -172,13 +173,13 @@ function AnalysisResultsSection({ outputData }: { outputData: any }) {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Property</TableHead>
-                      <TableHead>Value</TableHead>
+                      <TableHead>{t('Property')}</TableHead>
+                      <TableHead>{t('Value')}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="font-medium">Action</TableCell>
+                      <TableCell className="font-medium">{t('Action')}</TableCell>
                       <TableCell>
                         <span className={cn("font-medium", getActionColor(decision.action || ''))}>
                           {decision.action?.toUpperCase() || 'UNKNOWN'}
@@ -186,16 +187,16 @@ function AnalysisResultsSection({ outputData }: { outputData: any }) {
                       </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Quantity</TableCell>
+                      <TableCell className="font-medium">{t('Quantity')}</TableCell>
                       <TableCell>{decision.quantity || 0}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Confidence</TableCell>
+                      <TableCell className="font-medium">{t('Confidence')}</TableCell>
                       <TableCell>{decision.confidence?.toFixed(1) || 0}%</TableCell>
                     </TableRow>
                     {decision.reasoning && (
                       <TableRow>
-                        <TableCell className="font-medium">Reasoning</TableCell>
+                        <TableCell className="font-medium">{t('Reasoning')}</TableCell>
                         <TableCell className="max-w-md">
                           <ReasoningContent content={decision.reasoning} />
                         </TableCell>
@@ -220,6 +221,7 @@ export function RegularOutput({
   sortedAgents: [string, any][]; 
   outputData: any; 
 }) {
+  const { t } = useI18n();
   return (
     <>
       <ProgressSection sortedAgents={sortedAgents} />

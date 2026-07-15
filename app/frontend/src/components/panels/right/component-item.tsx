@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideIcon, Plus } from "lucide-react";
 import { useState } from "react";
+import { useI18n } from '@/i18n';
 
 interface ComponentItemProps {
   icon: LucideIcon;
@@ -18,6 +19,7 @@ export default function ComponentItem({
   className, 
   isActive = false 
 }: ComponentItemProps) {
+  const { t } = useI18n();
   const [isHovered, setIsHovered] = useState(false);
   
   const handlePlusClick = (e: React.MouseEvent) => {
@@ -56,7 +58,7 @@ export default function ComponentItem({
           size="icon"
           className="h-5 w-5 hover-bg hover:text-primary text-muted-foreground flex items-center justify-center"
           onClick={handlePlusClick}
-          aria-label="Add"
+          aria-label={t('Add')}
         >
           <Plus size={14} />
         </Button>

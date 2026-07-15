@@ -10,13 +10,15 @@ import { type InvestmentReportNode } from '../types';
 import { InvestmentReportDialog } from './investment-report-dialog';
 import { NodeShell } from './node-shell';
 import { OutputNodeStatus } from './output-node-status';
+import { useI18n } from '@/i18n';
 
 export function InvestmentReportNode({
   data,
   selected,
   id,
   isConnectable,
-}: NodeProps<InvestmentReportNode>) {  
+}: NodeProps<InvestmentReportNode>) {
+  const { t } = useI18n();  
   const { currentFlowId } = useFlowContext();
   const { getOutputNodeDataForFlow } = useNodeContext();
   

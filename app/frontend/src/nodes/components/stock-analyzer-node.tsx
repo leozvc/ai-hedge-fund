@@ -28,6 +28,7 @@ import { useNodeState } from '@/hooks/use-node-state';
 import { cn, formatKeyboardShortcut } from '@/lib/utils';
 import { type StockAnalyzerNode } from '../types';
 import { NodeShell } from './node-shell';
+import { useI18n } from '@/i18n';
 
 const runModes = [
   { value: 'single', label: 'Single Run' },
@@ -40,6 +41,7 @@ export function StockAnalyzerNode({
   id,
   isConnectable,
 }: NodeProps<StockAnalyzerNode>) {
+  const { t } = useI18n();
   // Calculate default dates
   const today = new Date();
   const threeMonthsAgo = new Date(today);
@@ -254,7 +256,7 @@ export function StockAnalyzerNode({
                 <div className="text-subtitle text-primary flex items-center gap-1">
                   <Tooltip delayDuration={200}>
                     <TooltipTrigger asChild>
-                      <span>Tickers</span>
+                      <span>{t('Tickers')}</span>
                     </TooltipTrigger>
                     <TooltipContent side="right">
                       You can add multiple tickers using commas (AAPL,NVDA,TSLA)
@@ -262,7 +264,7 @@ export function StockAnalyzerNode({
                   </Tooltip>
                 </div>
                 <Input
-                  placeholder="Enter tickers"
+                  placeholder={t('Enter tickers')}
                   value={tickers}
                   onChange={handleTickersChange}
                 />
@@ -289,7 +291,7 @@ export function StockAnalyzerNode({
                     <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0 bg-node border border-border shadow-lg">
                       <Command className="bg-node">
                         <CommandList className="bg-node">
-                          <CommandEmpty>No run mode found.</CommandEmpty>
+                          <CommandEmpty>{t('No run mode found.')}</CommandEmpty>
                           <CommandGroup>
                             {runModes.map((mode) => (
                               <CommandItem

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/popover"
 import { type LanguageModel } from "@/data/models"
 import { cn } from "@/lib/utils"
+import { useI18n } from '@/i18n';
 
 interface ModelSelectorProps {
   models: LanguageModel[];
@@ -30,7 +31,7 @@ export function ModelSelector({
   models, 
   value, 
   onChange, 
-  placeholder = "Select a model..." 
+  placeholder = {t('Select a model...')} 
 }: ModelSelectorProps) {
   const [open, setOpen] = React.useState(false)
 
@@ -53,9 +54,9 @@ export function ModelSelector({
       </PopoverTrigger>
       <PopoverContent className="w-full min-w-[350px] p-0 bg-node border border-border shadow-lg">
         <Command className="bg-node">
-          <CommandInput placeholder="Search model..." className="h-9 bg-node" />
+          <CommandInput placeholder={t('Search model...')} className="h-9 bg-node" />
           <CommandList className="bg-node">
-            <CommandEmpty>No model found.</CommandEmpty>
+            <CommandEmpty>{t('No model found.')}</CommandEmpty>
             <CommandGroup>
               {models.map((model) => (
                 <CommandItem

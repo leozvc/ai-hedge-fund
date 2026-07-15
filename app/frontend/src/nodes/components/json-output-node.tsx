@@ -12,13 +12,15 @@ import { type JsonOutputNode } from '../types';
 import { JsonOutputDialog } from './json-output-dialog';
 import { NodeShell } from './node-shell';
 import { OutputNodeStatus } from './output-node-status';
+import { useI18n } from '@/i18n';
 
 export function JsonOutputNode({
   data,
   selected,
   id,
   isConnectable,
-}: NodeProps<JsonOutputNode>) {  
+}: NodeProps<JsonOutputNode>) {
+  const { t } = useI18n();  
   const { currentFlowId } = useFlowContext();
   const { getOutputNodeDataForFlow } = useNodeContext();
   

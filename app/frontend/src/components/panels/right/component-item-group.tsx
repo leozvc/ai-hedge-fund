@@ -2,6 +2,7 @@ import ComponentItem from '@/components/panels/right/component-item';
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useFlowContext } from '@/contexts/flow-context';
 import { ComponentGroup } from '@/data/sidebar-components';
+import { useI18n } from '@/i18n';
 
 interface ComponentItemGroupProps {
   group: ComponentGroup;
@@ -12,6 +13,7 @@ export function ComponentItemGroup({
   group, 
   activeItem
 }: ComponentItemGroupProps) {
+  const { t } = useI18n();
   const { name, icon: Icon, iconColor, items } = group;
   const { addComponentToFlow } = useFlowContext();
 

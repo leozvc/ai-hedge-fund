@@ -14,6 +14,7 @@ import {
 import { useState } from 'react';
 import { FlowContextMenu } from './flow-context-menu';
 import { FlowEditDialog } from './flow-edit-dialog';
+import { useI18n } from '@/i18n';
 
 interface FlowItemProps {
   flow: Flow;
@@ -24,6 +25,7 @@ interface FlowItemProps {
 }
 
 export default function FlowItem({ flow, onLoadFlow, onDeleteFlow, onRefresh, isActive = false }: FlowItemProps) {
+  const { t } = useI18n();
   const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; position: { x: number; y: number } }>({
     isOpen: false,
     position: { x: 0, y: 0 }
@@ -142,7 +144,7 @@ export default function FlowItem({ flow, onLoadFlow, onDeleteFlow, onRefresh, is
             {hasActiveConnection && (
               <div className="flex items-center gap-1 flex-shrink-0">
                 <Zap className="h-3 w-3 text-yellow-500 animate-pulse" />
-                <span className="text-xs text-yellow-500 font-medium">Running</span>
+                <span className="text-xs text-yellow-500 font-medium">{t('Running')}</span>
               </div>
             )}
           </div>
@@ -174,7 +176,7 @@ export default function FlowItem({ flow, onLoadFlow, onDeleteFlow, onRefresh, is
             size="icon"
             onClick={handleMenuClick}
             className="h-6 w-6 text-muted-foreground hover-item opacity-0 group-hover:opacity-100 transition-opacity rounded"
-            title="More options"
+            title={t('More options')}
           >
             <MoreHorizontal size={14} />
           </Button>

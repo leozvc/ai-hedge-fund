@@ -6,6 +6,7 @@ import { ReactNode, useEffect } from 'react';
 import { Button } from '../../ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../ui/tabs';
 import { OutputTab } from './tabs';
+import { useI18n } from '@/i18n';
 
 interface BottomPanelProps {
   children?: ReactNode;
@@ -21,6 +22,7 @@ export function BottomPanel({
   onToggleCollapse,
   onHeightChange,
 }: BottomPanelProps) {
+  const { t } = useI18n();
   const { currentBottomTab, setBottomPanelTab } = useLayoutContext();
   
   // Use our custom hooks for vertical resizing
@@ -78,7 +80,7 @@ export function BottomPanel({
               size="icon"
               onClick={onToggleCollapse}
               className="h-6 w-6 text-primary hover-bg"
-              aria-label="Close panel"
+              aria-label={t('Close panel')}
             >
               <X size={14} />
             </Button>

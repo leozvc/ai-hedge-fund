@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 import { BacktestOutput } from './backtest-output';
 import { sortAgents } from './output-tab-utils';
 import { RegularOutput } from './regular-output';
+import { useI18n } from '@/i18n';
 
 interface OutputTabProps {
   className?: string;
 }
 
 export function OutputTab({ className }: OutputTabProps) {
+  const { t } = useI18n();
   const { currentFlowId } = useFlowContext();
   const { getAgentNodeDataForFlow, getOutputNodeDataForFlow } = useNodeContext();
   const [updateTrigger, setUpdateTrigger] = useState(0);

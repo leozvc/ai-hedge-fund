@@ -5,6 +5,7 @@ import { ReactNode, useEffect } from 'react';
 import { FlowActions } from './flow-actions';
 import { FlowCreateDialog } from './flow-create-dialog';
 import { FlowList } from './flow-list';
+import { useI18n } from '@/i18n';
 
 interface LeftSidebarProps {
   children?: ReactNode;
@@ -18,6 +19,7 @@ export function LeftSidebar({
   isCollapsed,
   onWidthChange,
 }: LeftSidebarProps) {
+  const { t } = useI18n();
   // Use our custom hooks
   const { width, isDragging, elementRef, startResize } = useResizable({
     defaultWidth: 280,

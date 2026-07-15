@@ -7,6 +7,7 @@ import { ThemeProvider } from './providers/theme-provider';
 import { I18nProvider } from './i18n';
 
 import './index.css';
+import { useI18n } from '@/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -12,6 +12,7 @@ import { useToastManager } from '@/hooks/use-toast-manager';
 import { flowService } from '@/services/flow-service';
 import { Flow } from '@/types/flow';
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/i18n';
 
 interface FlowCreateDialogProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ interface FlowCreateDialogProps {
 }
 
 export function FlowCreateDialog({ isOpen, onClose, onFlowCreated }: FlowCreateDialogProps) {
+  const { t } = useI18n();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +82,7 @@ export function FlowCreateDialog({ isOpen, onClose, onFlowCreated }: FlowCreateD
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create New Flow</DialogTitle>
+          <DialogTitle>{t('Create New Flow')}</DialogTitle>
           <DialogDescription>
             Create a new flow with a custom name and description.
           </DialogDescription>
@@ -96,7 +98,7 @@ export function FlowCreateDialog({ isOpen, onClose, onFlowCreated }: FlowCreateD
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Enter flow name"
+              placeholder={t('Enter flow name')}
               className="col-span-3"
               autoFocus
             />
@@ -111,7 +113,7 @@ export function FlowCreateDialog({ isOpen, onClose, onFlowCreated }: FlowCreateD
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Enter flow description (optional)"
+              placeholder={t('Enter flow description (optional)')}
               className="col-span-3"
             />
           </div>

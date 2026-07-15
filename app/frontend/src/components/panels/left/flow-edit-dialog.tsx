@@ -13,6 +13,7 @@ import { useToastManager } from '@/hooks/use-toast-manager';
 import { flowService } from '@/services/flow-service';
 import { Flow } from '@/types/flow';
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/i18n';
 
 interface FlowEditDialogProps {
   flow: Flow | null;
@@ -22,6 +23,7 @@ interface FlowEditDialogProps {
 }
 
 export function FlowEditDialog({ flow, isOpen, onClose, onFlowUpdated }: FlowEditDialogProps) {
+  const { t } = useI18n();
   const [name, setName] = useState(flow?.name || '');
   const [description, setDescription] = useState(flow?.description || '');
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +87,7 @@ export function FlowEditDialog({ flow, isOpen, onClose, onFlowUpdated }: FlowEdi
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit Flow</DialogTitle>
+          <DialogTitle>{t('Edit Flow')}</DialogTitle>
           <DialogDescription>
             Update the name and description for your flow.
           </DialogDescription>
@@ -101,7 +103,7 @@ export function FlowEditDialog({ flow, isOpen, onClose, onFlowUpdated }: FlowEdi
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Enter flow name"
+              placeholder={t('Enter flow name')}
               className="col-span-3"
             />
           </div>
@@ -115,7 +117,7 @@ export function FlowEditDialog({ flow, isOpen, onClose, onFlowUpdated }: FlowEdi
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Enter flow description (optional)"
+              placeholder={t('Enter flow description (optional)')}
               className="col-span-3"
             />
           </div>

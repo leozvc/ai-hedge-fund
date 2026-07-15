@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
+import { useI18n } from '@/i18n';
 
 interface SearchBoxProps {
   value: string;
@@ -10,7 +11,7 @@ interface SearchBoxProps {
 export function SearchBox({ 
   value, 
   onChange, 
-  placeholder = "Search components..." 
+  placeholder = {t('Search components...')} 
 }: SearchBoxProps) {
   return (
     <div className="px-2 py-2 sticky top-0 bg-panel z-10">
@@ -29,7 +30,7 @@ export function SearchBox({
             size="icon"
             onClick={() => onChange('')}
             className="h-4 w-4 text-muted-foreground hover:text-primary"
-            aria-label="Clear search"
+            aria-label={t('Clear search')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />

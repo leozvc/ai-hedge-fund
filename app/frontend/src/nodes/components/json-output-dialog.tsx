@@ -5,6 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { Button } from '@/components/ui/button';
 import {
+import { useI18n } from '@/i18n';
     Dialog,
     DialogContent,
     DialogHeader,
@@ -24,6 +25,7 @@ export function JsonOutputDialog({
   outputNodeData,
   connectedAgentIds
 }: JsonOutputDialogProps) {
+  const { t } = useI18n();
   const [copySuccess, setCopySuccess] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 

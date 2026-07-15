@@ -3,8 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useI18n } from '@/i18n';
 
 export function ThemeSettings() {
+  const { t } = useI18n();
   const { theme, setTheme } = useTheme();
 
   const themes = [
@@ -31,7 +33,7 @@ export function ThemeSettings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-primary mb-2">Theme</h2>
+        <h2 className="text-xl font-semibold text-primary mb-2">{t('Theme')}</h2>
         <p className="text-sm text-muted-foreground">
           Customize the look and feel of your application.
         </p>

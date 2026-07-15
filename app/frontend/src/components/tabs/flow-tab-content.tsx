@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { flowService } from '@/services/flow-service';
 import { Flow as FlowType } from '@/types/flow';
 import { useEffect } from 'react';
+import { useI18n } from '@/i18n';
 
 // Import the flow connection manager to check if flow is actively running
 
@@ -15,6 +16,7 @@ interface FlowTabContentProps {
 }
 
 export function FlowTabContent({ flow, className }: FlowTabContentProps) {
+  const { t } = useI18n();
   const { loadFlow } = useFlowContext();
   const { activeTabId } = useTabsContext();
 

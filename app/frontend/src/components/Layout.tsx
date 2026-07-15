@@ -14,6 +14,7 @@ import { TabService } from '@/services/tab-service';
 import { ReactFlowProvider } from '@xyflow/react';
 import { ReactNode, useEffect, useState } from 'react';
 import { TopBar } from './layout/top-bar';
+import { useI18n } from '@/i18n';
 
 // Create a LayoutContent component to access the FlowContext, TabsContext, and LayoutContext
 function LayoutContent({ children }: { children: ReactNode }) {
@@ -185,6 +186,7 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
+  const { t } = useI18n();
   return (
     <SidebarProvider defaultOpen={true}>
       <ReactFlowProvider>

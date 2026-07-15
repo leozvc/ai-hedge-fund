@@ -26,12 +26,14 @@ import { AppNode } from '@/nodes/types';
 import { edgeTypes } from '../edges';
 import { nodeTypes } from '../nodes';
 import { TooltipProvider } from './ui/tooltip';
+import { useI18n } from '@/i18n';
 
 type FlowProps = {
   className?: string;
 };
 
 export function Flow({ className = '' }: FlowProps) {
+  const { t } = useI18n();
   const { theme, resolvedTheme } = useTheme();
   
   // Use the resolved theme for ReactFlow ColorMode

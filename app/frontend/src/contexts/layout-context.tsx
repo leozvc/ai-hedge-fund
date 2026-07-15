@@ -1,5 +1,6 @@
 import { SidebarStorageService } from '@/services/sidebar-storage';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { useI18n } from '@/i18n';
 
 interface LayoutContextType {
   isBottomCollapsed: boolean;
@@ -13,6 +14,7 @@ interface LayoutContextType {
 const LayoutContext = createContext<LayoutContextType | null>(null);
 
 export function useLayoutContext() {
+  const { t } = useI18n();
   const context = useContext(LayoutContext);
   if (!context) {
     throw new Error('useLayoutContext must be used within a LayoutProvider');

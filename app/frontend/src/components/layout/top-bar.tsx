@@ -81,7 +81,7 @@ export function TopBar({
         size="sm"
         onClick={() => setLocale(otherLocale)}
         className="h-8 px-2 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors text-xs font-mono"
-        aria-label="Switch language"
+        aria-label={t('Switch language')}
         title={locale === 'zh' ? 'Switch to English' : '切换到中文'}
       >
         <Globe size={14} className="mr-1" />

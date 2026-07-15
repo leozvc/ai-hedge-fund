@@ -12,6 +12,7 @@ import { AlignJustify, Copy, Loader2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useI18n } from '@/i18n';
 
 interface AgentOutputDialogProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export function AgentOutputDialog({
   nodeId,
   flowId
 }: AgentOutputDialogProps) {
+  const { t } = useI18n();
   const { getAgentNodeDataForFlow } = useNodeContext();
   
   // Use the passed flowId instead of getting it from flow context
@@ -110,7 +112,7 @@ export function AgentOutputDialog({
       <DialogTrigger asChild>
         <div className="border-t border-border p-3 flex justify-end items-center cursor-pointer hover:bg-accent/50" onClick={() => onOpenChange(true)}>
           <div className="flex items-center gap-1">
-            <div className="text-subtitle text-muted-foreground">Output</div>
+            <div className="text-subtitle text-muted-foreground">{t('Output')}</div>
             <AlignJustify className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
         </div>
@@ -127,7 +129,7 @@ export function AgentOutputDialog({
         <div className="grid grid-cols-2 gap-6 pt-4" ref={initialFocusRef} tabIndex={-1}>
           {/* Activity Log Section */}
           <div>
-            <h3 className="font-medium mb-3 text-primary">Log</h3>
+            <h3 className="font-medium mb-3 text-primary">{t('Log')}</h3>
             <div className="h-[400px] overflow-y-auto border border-border rounded-lg p-3">
               {messages.length > 0 ? (
                 <div className="p-3 space-y-3">
@@ -156,12 +158,12 @@ export function AgentOutputDialog({
           {/* Analysis Section */}
           <div>
             <div className="flex justify-between items-center mb-3">
-              <h3 className="font-medium text-primary">Analysis</h3>
+              <h3 className="font-medium text-primary">{t('Analysis')}</h3>
               <div className="flex items-center gap-2">
                 {/* Ticker selector */}
                 {tickersWithDecisions.length > 0 && (
                   <div className="flex items-center gap-1">
-                    <span className="text-xs text-muted-foreground font-medium">Ticker:</span>
+                    <span className="text-xs text-muted-foreground font-medium">{t('Ticker:')}</span>
                     <select 
                       className="text-xs p-1 rounded bg-background border border-border cursor-pointer"
                       value={selectedTicker || ''}
@@ -188,7 +190,7 @@ export function AgentOutputDialog({
                         <button 
                           onClick={copyToClipboard}
                           className="flex items-center gap-1.5 text-xs p-1.5 rounded hover:bg-accent transition-colors text-muted-foreground"
-                          title="Copy to clipboard"
+                          title={t('Copy to clipboard')}
                         >
                           <Copy className="h-3.5 w-3.5 " />
                           <span className="font-medium">{copySuccess ? 'Copied!' : 'Copy'}</span>
