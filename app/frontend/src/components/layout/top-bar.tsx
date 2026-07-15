@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { PanelBottom, PanelLeft, PanelRight, Settings } from 'lucide-react';
+import { useI18n, type Locale } from '@/i18n';
+import { Globe } from 'lucide-react';
 
 interface TopBarProps {
   isLeftCollapsed: boolean;
@@ -12,6 +13,7 @@ interface TopBarProps {
   onSettingsClick: () => void;
 }
 
+// ponytail: 单按钮在中英间切换, 不做下拉。两语言够用。
 export function TopBar({
   isLeftCollapsed,
   isRightCollapsed,
@@ -21,6 +23,8 @@ export function TopBar({
   onToggleBottom,
   onSettingsClick,
 }: TopBarProps) {
+  const { t, locale, setLocale } = useI18n();
+  const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
   return (
     <div className="absolute top-0 right-0 z-40 flex items-center gap-0 py-1 px-2 bg-panel/80">
       {/* Left Sidebar Toggle */}
@@ -32,8 +36,8 @@ export function TopBar({
           "h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors",
           !isLeftCollapsed && "text-foreground"
         )}
-        aria-label="Toggle left sidebar"
-        title="Toggle Left Side Bar (⌘B)"
+        aria-label={t('panel.left_side_bar')}
+        title={t('panel.left_side_bar') + ' (⌘B)'}
       >
         <PanelLeft size={16} />
       </Button>
@@ -47,8 +51,8 @@ export function TopBar({
           "h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors",
           !isBottomCollapsed && "text-foreground"
         )}
-        aria-label="Toggle bottom panel"
-        title="Toggle Bottom Panel (⌘J)"
+        aria-label={t('panel.bottom_panel')}
+        title={t('panel.bottom_panel') + ' (⌘J)'}
       >
         <PanelBottom size={16} />
       </Button>
@@ -62,8 +66,8 @@ export function TopBar({
           "h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors",
           !isRightCollapsed && "text-foreground"
         )}
-        aria-label="Toggle right sidebar"
-        title="Toggle Right Side Bar (⌘I)"
+        aria-label={t('panel.right_side_bar')}
+        title={t('panel.right_side_bar') + ' (⌘I)'}
       >
         <PanelRight size={16} />
       </Button>
@@ -71,17 +75,30 @@ export function TopBar({
       {/* Divider */}
       <div className="w-px h-5 bg-ramp-grey-700 mx-1" />
 
+      {/* Locale switch — ponytail: inline next to settings, no dropdown */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => setLocale(otherLocale)}
+        className="h-8 px-2 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors text-xs font-mono"
+        aria-label="Switch language"
+        title={locale === 'zh' ? 'Switch to English' : '切换到中文'}
+      >
+        <Globe size={14} className="mr-1" />
+        {otherLocale.toUpperCase()}
+      </Button>
+
       {/* Settings */}
       <Button
         variant="ghost"
         size="sm"
         onClick={onSettingsClick}
         className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-ramp-grey-700 transition-colors"
-        aria-label="Open settings"
-        title="Open Settings (⌘,)"
+        aria-label={t('panel.settings')}
+        title={t('panel.settings') + ' (⌘,)'}
       >
         <Settings size={16} />
       </Button>
     </div>
   );
-} 
+}
