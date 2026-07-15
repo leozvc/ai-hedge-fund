@@ -1,8 +1,8 @@
-interface TerminalTabProps {
 import { useI18n } from '@/i18n';
+
+interface TerminalTabProps {
   className?: string;
 }
-
 export function TerminalTab({ className }: TerminalTabProps) {
   const { t } = useI18n();
   return (

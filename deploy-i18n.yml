@@ -1,0 +1,28 @@
+# ponytail: 单 frontend 服务, i18n 版本。
+# backend (deploy-backend-1) 不动, 跑在 deploy 项目里。
+#
+# 部署:
+#   cd /vol1/docker/ai-hedge-fund-fork
+#   docker compose -p hf-i18n -f deploy-i18n.yml up -d --build frontend
+#
+# 访问: http://192.168.31.9:8881 (旧版仍 8880, 两版并存对比)
+# nginx.conf proxy_pass http://backend:8000 — 加入 deploy 默认网络解析
+
+services:
+  frontend:
+    build:
+      context: /vol1/docker/ai-hedge-fund-fork
+      dockerfile: deploy/Dockerfile.frontend
+      args:
+        VITE_API_URL: /api
+    image: ai-hedge-fund-frontend:i18n-zh
+    restart: unless-stopped
+    ports:
+      - "8881:80"
+    networks:
+      - hf-shared
+
+networks:
+  hf-shared:
+    external: true
+    name: deploy_default

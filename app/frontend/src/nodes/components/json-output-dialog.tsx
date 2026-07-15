@@ -3,22 +3,14 @@ import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { useI18n } from '@/i18n';
 import { Button } from '@/components/ui/button';
 import {
-import { useI18n } from '@/i18n';
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from '@/components/ui/dialog';
-
-interface JsonOutputDialogProps {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-  outputNodeData: any;
-  connectedAgentIds: Set<string>;
-}
-
+} from "@/components/ui/dialog";
 export function JsonOutputDialog({ 
   isOpen, 
   onOpenChange, 

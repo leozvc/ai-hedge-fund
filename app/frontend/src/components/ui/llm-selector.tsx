@@ -31,7 +31,7 @@ export function ModelSelector({
   models, 
   value, 
   onChange, 
-  placeholder = {t('Select a model...')} 
+  placeholder = t('Select a model...') 
 }: ModelSelectorProps) {
   const [open, setOpen] = React.useState(false)
 

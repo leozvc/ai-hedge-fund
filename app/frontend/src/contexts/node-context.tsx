@@ -25,7 +25,6 @@ export interface AgentNodeData {
 
 // Data structure for the output node data (from complete event)
 export interface OutputNodeData {
-import { useI18n } from '@/i18n';
   decisions: Record<string, any>;
   analyst_signals: Record<string, any>;
   // Backtest-specific fields

@@ -11,7 +11,7 @@ interface SearchBoxProps {
 export function SearchBox({ 
   value, 
   onChange, 
-  placeholder = {t('Search components...')} 
+  placeholder = t('Search components...') 
 }: SearchBoxProps) {
   return (
     <div className="px-2 py-2 sticky top-0 bg-panel z-10">

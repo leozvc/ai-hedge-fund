@@ -5,7 +5,6 @@ import { createContext, ReactNode, useCallback, useContext, useEffect, useState 
 export type TabType = 'flow' | 'settings';
 
 export interface Tab {
-import { useI18n } from '@/i18n';
   id: string;
   type: TabType;
   title: string;
